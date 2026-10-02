@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,15 +23,18 @@ public class Endereco {
   @Column
   private String numero;
 
+@ManyToOne  
+  @JoinColumn(name="endereco_id")
+  private Endereco endereco;
+
   public Endereco () {
   }
 
-  public Endereco(Integer id, String cep, String numero) {
+  public Endereco(Integer id, String cep, String numero, Endereco endereco) {
     this.id = id;
     this.cep = cep;
     this.numero = numero;
-
-
+    this.endereco = endereco;
   }
 
   public Integer getId() {
